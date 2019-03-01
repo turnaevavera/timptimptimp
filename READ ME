@@ -1,6 +1,8 @@
-**
+*
 
 ## ПРАКТИЧЕСКАЯ РАБОТА №2
+
+**
                    
 
   ##  1 Задания к работе
@@ -16,11 +18,15 @@
 1. Создать файлы, содержащие коды для выполнения заданий. Это было сделано с помощью редактора nano.
 2.  Скомпилировать файлы и проверить их работу.
 3. Загрузить файлы на репозиторий pr2.
+
 ![enter image description here](https://lh3.googleusercontent.com/oBubSW5-f72AlSFtWE4cE0Qu01nr-maH_HxRkudtlPCcTZogwcyU-EIbn-5e5qkC_O4Dp4O-AIoh)
 
  "Рисунок 1 - Компиляция первой программы")
+ 
 ![enter image description here](https://lh3.googleusercontent.com/2PogZkEbUg85b9e55GLpMbcX0xwITKnpRMcIlTjKdPlfSZkL13PTXRPfOmFielO725zKRFksFddd)
+ 
  "Рисунок 2 - Компиляция второй программы")
+ 
 ## 3 Результаты работы
 
 Компиляция показала, что код рабочий и задание выполнено. Результаты работы программы представлены на рисунках 1 и 2( см 2 Ход работы).
