@@ -1,9 +1,10 @@
+
 #include <stdio.h>
 int main()
 {
- int n, m;
- int i = 1;
  int summa = 0;
+ int i = 1;
+ int n, m;
  scanf("%d" ,&m);
  while (i<=m)
  {
@@ -11,5 +12,4 @@ int main()
  summa = summa + (n-i);
  i++;
  }
- printf("%d",summa);
-}
+ printf("%d",su
