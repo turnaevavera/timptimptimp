@@ -20,11 +20,11 @@
 
 ![enter image description here](https://lh3.googleusercontent.com/oBubSW5-f72AlSFtWE4cE0Qu01nr-maH_HxRkudtlPCcTZogwcyU-EIbn-5e5qkC_O4Dp4O-AIoh)
 
- "Рисунок 1 - Компиляция первой программы")
+ "Рисунок 1 - Компиляция первой программы
  
 ![enter image description here](https://lh3.googleusercontent.com/q_9syVAMoGSPNEm4b1sEBWzdkQvMGqYuUyH6CaUn7gHiuShtHGLubWjJ9eMPrpJR6HpSXzRx2C0j)
  
- "Рисунок 2 - Компиляция второй программы")
+ "Рисунок 2 - Компиляция второй программы
  
 ## 3 Результаты работы
 
