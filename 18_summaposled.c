@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 int main()
 {
@@ -12,4 +11,5 @@ int main()
  summa = summa + (n-i);
  i++;
  }
- printf("%d",su
+ printf("%d",summa);
+}
