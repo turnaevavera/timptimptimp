@@ -45,7 +45,7 @@ int push_back(struct list* spissokk, int x)
 		struct Node* tmp = (struct Node*)malloc(sizeof(struct Node));
 		tmp->value=x;
 		tmp->next=NULL;
-		struct Node* temp = spissokk->first;
+		struct Node* temp = spissokk->start;
 		while(temp->next!=NULL)
 			temp=temp->next;
 		temp->next=tmp;
@@ -61,7 +61,7 @@ int push_front(struct list* spissokk,int x)
 	{
 		struct Node *tmp = (struct Node*)malloc(sizeof(struct Node));
 		tmp->value=x;
-		tmp->next=spissokk->first;
+		tmp->next=spissokk->start;
 		spissokk->start=tmp;
 	}
 	return 0;
