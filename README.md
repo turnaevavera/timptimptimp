@@ -23,10 +23,10 @@
 
 ## Результат работы программы
 Результат работы программы представлен ниже.
+
+
 ![enter image description here](https://lh3.googleusercontent.com/XfVb7Klo4HfE0pi9rCO8ZtiP26fg9n_-Y3lOtn63f1H4FO_Qj4simWKvB-WZVw1a6_kEe5OpqdPL)
 *Входные и выходные данные:*
-```
-Colons can be used to align columns.
 
 | Входные данные     | Выходные данные         
 | -------------------|:--------------- 
