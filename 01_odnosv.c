@@ -1,187 +1,177 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-struct Node { 
- 	int value;
-	struct Node *next;
-} Node;
+struct pampam {
+ 	int znachenie;
+	struct pampam *next;
+} pampam;
 
-struct list{		
-	struct Node* start;	
-} list;
+struct listt{
+	struct pampam* p;
+} listt;
 
-int isEmpty(struct list* spissokk)
+int isEmpty(struct listt* tadam)
 {
-	return spissokk->start==NULL;
+	return tadam->p==NULL;
 }
 
-struct Node* find(struct list* spissokk,int value)
+struct pampam* find(struct listt* tadam,int znachenie)
 {
-	struct Node *tmp=spissokk->start;
-	while(tmp->value!=value){
-		if(tmp->next!=NULL)
-			tmp=tmp->next;
+	struct pampam *t=tadam->p;
+	while(t->znachenie!=znachenie){
+		if(t->next!=NULL)
+			t=t->next;
 		else
 			return 0;
 	}
-	return tmp;
+	return t;
 }
-
-void init(struct list* spissokk,int value)
+void init(struct listt* tadam,int znachenie)
 {
-	struct Node* tmp;
-	tmp = (struct Node*)malloc(sizeof(struct Node));
-	tmp->value=value;
-	tmp->next=NULL;
-	spissokk->start = tmp;
+	struct pampam* t;
+	t = (struct pampam*)malloc(sizeof(struct pampam));
+	t->znachenie=znachenie;
+	t->next=NULL;
+	tadam->p = t;
 }
-
-int push_back(struct list* spissokk, int x)
+int push_back(struct listt* tadam, int x)
 {
-	if(isEmpty(spissokk)==1)
-		init (spissokk,x);
+	if(isEmpty(tadam)==1)
+		init (tadam,x);
 	else
 	{
-		struct Node* tmp = (struct Node*)malloc(sizeof(struct Node));
-		tmp->value=x;
-		tmp->next=NULL;
-		struct Node* temp = spissokk->start;
-		while(temp->next!=NULL)
-			temp=temp->next;
-		temp->next=tmp;
+		struct pampam* t = (struct pampam*)malloc(sizeof(struct pampam));
+		t->znachenie=x;
+		t->next=NULL;
+		struct pampam* tm = tadam->p;
+		while(tm->next!=NULL)
+			tm=tm->next;
+		tm->next=t;
 	}
 	return 0;
 }
-
-int push_front(struct list* spissokk,int x) 
+int push_front(struct listt* tadam,int x) 
 {
-	if(isEmpty(spissokk)==1)
-		init (spissokk,x);
+	if(isEmpty(tadam)==1)
+		init (tadam,x);
 	else
 	{
-		struct Node *tmp = (struct Node*)malloc(sizeof(struct Node));
-		tmp->value=x;
-		tmp->next=spissokk->start;
-		spissokk->start=tmp;
+		struct pampam *t = (struct pampam*)malloc(sizeof(struct pampam));
+		t->znachenie=x;
+		t->next=tadam->p;
+		tadam->p=t;
 	}
 	return 0;
 }
-
-int clear(struct list* spissokk)
+int clear(struct listt* tadam)
 {
-	if(isEmpty(spissokk)==1)
+	if(isEmpty(tadam)==1)
 	{
-		struct Node *tmp=spissokk->start;
-		struct Node *temp=NULL;
-		while(tmp!=NULL)
+		struct pampam *t=tadam->p;
+		struct pampam *tm=NULL;
+		while(t!=NULL)
 		{
-			temp=tmp->next;
-			free(tmp);
-			tmp=temp;
+			tm=t->next;
+			free(t);
+			t=tm;
 		}
-		spissokk->start=NULL;
+		tadam->p=NULL;
 	}
 }
-
-void _remove(struct list* spissokk, struct Node *tmp){
-	if(tmp!=NULL){
-		if (tmp==spissokk->start)
-			spissokk->start=tmp->next;
+void _remove(struct listt* tadam, struct pampam *t){
+	if(t!=NULL){
+		if (t==tadam->p)
+			tadam->p=t->next;
 		else
 		{
-			struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
-			temp=spissokk->start;
-			while(temp->next!=tmp)
-				temp=temp->next;
-			temp->next = tmp->next;
+			struct pampam *tm = (struct pampam*)malloc(sizeof(struct pampam));
+			tm=tadam->p;
+			while(tm->next!=t)
+				tm=tm->next;
+			tm->next = t->next;
 		}
-		free(tmp);
+		free(t);
 	}
 }
-
-int removeFirst(struct list* spissokk, int x)
+int removeFirst(struct listt* tadam, int x)
 {
-	struct Node* element = find(spissokk,x);
-	if (element!=NULL){
-		_remove(spissokk,element);
+	struct pampam* elem = find(tadam,x);
+	if (tadam!=NULL){
+		_remove(tadam,elem);
 		return 0;
 	}
 	return -1;
 }
-
-int insertAfter	(struct list* spissokk,int num, int value)
+int insertAfter	(struct listt* tadam,int num, int znachenie)
 {
-	struct Node *temp = malloc(sizeof(Node));
-	temp->value=value;
+	struct pampam *tm = malloc(sizeof(pampam));
+	tm->znachenie=znachenie;
 
-	struct Node* tmp = spissokk->start;
-	struct Node* prev_tmp = spissokk->start;
-	
+	struct pampam* t = tadam->p;
+	struct pampam* prev_t = tadam->p;
+
 	for (int i = 1;i<num+1;i++)
 	{
-		prev_tmp=tmp;
-		tmp=tmp->next;
-		if(tmp==NULL) 
+		prev_t=t;
+		t=t->next;
+		if(t==NULL)
 			return -1;
 	}
-	prev_tmp->next=temp;
-	temp->next=tmp;
-	return 0;   
+	prev_t->next=tm;
+	tm->next=t;
+	return 0;
 }
-
-void print(struct list* spissokk)
+void print(struct listt* tadam)
 {
-	struct Node* tmp=spissokk->start;
-	while(tmp->next!=NULL)
+	struct pampam* t=tadam->p;
+	while(t->next!=NULL)
 	{
-		printf("%d ", tmp->value);
-		tmp=tmp->next;
+		printf("%d ", t->znachenie);
+		t=t->next;
 	}
-	printf("%d\n", tmp->value);
+	printf("%d\n", t->znachenie);
 }
-
 int main()
 {
 	int n,a;
-    struct list* list=(struct list*)malloc(sizeof(struct list));	
+    struct listt* listt=(struct listt*)malloc(sizeof(struct listt));
 	scanf("%d",&n);
 	for (int i=0;i<n;i++)
 	{
 		scanf("%d",&a);
-		push_back(list,a);
+		push_back(listt,a);
 	}
-	print(list);
-	
+	print(listt);
+
 	int k[3];
         scanf("%d%d%d",&k[0],&k[1],&k[2]);
 	for(int i=0;i<3;i++){
-		if(find(list,k[i])!=NULL)
+		if(find(listt,k[i])!=NULL)
 			printf("1 ");
 		else
 			printf("0 ");
 	}
 	printf("\n");
-
 	int m;
 	scanf("%d",&m);
-	push_back(list,m);
-	print(list);
+	push_back(listt,m);
+	print(listt);
 
 	int t;
 	scanf("%d",&t);
-	push_front(list,t);
-	print(list);
+	push_front(listt,t);
+	print(listt);
 
 	int j,x;
 	scanf("%d%d",&j,&x);
-	insertAfter(list,j,x);
-	print(list);
+	insertAfter(listt,j,x);
+	print(listt);
 
 	int z;
 	scanf("%d",&z);
-	removeFirst(list,z);
-	print(list);
+	removeFirst(listt,z);
+	print(listt);
 
-	clear(list);
+	clear(listt);
 	return 0;
 }
