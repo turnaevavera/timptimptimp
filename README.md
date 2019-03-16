@@ -32,7 +32,9 @@
 Вторая программа:
 ![enter image description here](https://lh3.googleusercontent.com/whiYgalpDHFYNSAaWa6pnON_M1ojGiBXXXdfAY_uzPiVZBXWjpApMOPDn7CDNH4LqVy2q6r1kAhF)
 *Входные и выходные данные:*
-```
+
+
+
 Первая программа:
 
 |  input     | output           |
