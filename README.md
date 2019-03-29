@@ -63,3 +63,16 @@
 
 
 
+
+
+
+
+
+
+Результат выполнения программы:
+
+![enter image description here](https://lh3.googleusercontent.com/bRr-hOtmbCw6XgmXkYAKYiQ-j77rOyuupLSd2p5wskc3x0-0Lt361mPDZpe4VA7eV1hWo9UWGyyQ)
+
+
+## Список используемых источников
+ - [ Бинарное дерево](http://www.cyberforum.ru/c-beginners/thread859845.html)
