@@ -12,8 +12,8 @@ typedef struct node
 } node;
 typedef struct tree
 {
-  struct node * root;   // указатель на корень дерева
-  int count;            // количество узлов в дереве
+  struct node * root;  
+  int count;            
 } tree;
 void init(tree * t)
 {
@@ -161,7 +161,6 @@ int deepness(struct node * n, int deep){
   return (d1 > d2) ? d1 : d2;
 }
 void printNode(struct node * n, int current, int deep, int first){
-  //printf("current: %d, deep: %d\n", current, deep);
   if (current == deep){
       if (first > 0){
         printf(" ");
