@@ -316,24 +316,22 @@ int main(){
   }
   int m2;
   scanf("%d", &m2);
-  struct node * n2;
-  n2 = malloc(sizeof * n2);
   int err = find(t, m2, n);
   if (err == 1){
     printf("-\n");
   } else {
-    if (n2->parent != NULL){
-      printf("%d ", n2->parent->data);
+    if (n->parent != NULL){
+      printf("%d ", n->parent->data);
     } else {
       printf("_ ");
     }
-    if (n2->left != NULL){
-      printf("%d ", n2->left->data);
+    if (n->left != NULL){
+      printf("%d ", n->left->data);
     } else {
       printf("_ ");
     }
-    if (n2->right != NULL){
-      printf("%d\n", n2->right->data);
+    if (n->right != NULL){
+      printf("%d\n", n->right->data);
     } else {
       printf("_\n");
     }
