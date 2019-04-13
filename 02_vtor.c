@@ -31,21 +31,30 @@ int find(derev* t, int zna4, strr* n)
 {
   struct strr * strrstrr;
 strrstrr = t->kor;
-  if (t->kor == NULL){
+  if (t->kor == NULL)
+  {
     return 1;
   }
-  while (1){
-    if (strrstrr == NULL) {
+  while (1)
+  {
+    if (strrstrr == NULL) 
+	{
       return 1;
-    } else if (strrstrr->data == zna4){
+    } 
+	else if (strrstrr->data == zna4)
+	{
       n->data = strrstrr->data;
       n->left = strrstrr->left;
       n->right = strrstrr->right;
       n->rodit = strrstrr->rodit;
       return 0;
-    } else if (zna4 > strrstrr->data){
+    } 
+	else if (zna4 > strrstrr->data)
+	{
       strrstrr = strrstrr->right;
-    } else {
+    } 
+	else 
+	{
       strrstrr = strrstrr->left;
     }
   }
@@ -57,32 +66,40 @@ int insert(derev* t, int zna4)
   struct strr * n, ** strrstrr, * last_strr = NULL;
 struct strr * en;
 en = malloc(sizeof * en);
-    
 int error = find(t, zna4, en);
-  if (error == 0){
+  if (error == 0)
+  {
     return 1;
   }
   strrstrr = &t->kor;
   n = t->kor;
-  while (1){
-    if (n == NULL) {
+  while (1)
+  {
+    if (n == NULL) 
+	{
       n = * strrstrr = malloc(sizeof * n);
-      if (n != NULL){
+      if (n != NULL)
+	  {
         n->data = zna4;
         n->left = NULL;
         n->right = NULL;
         n->rodit = last_strr;
         t->count++;
         return 0;
-      } else {
+      } 
+	  else
+		{
         return 2; 
-      }
+		}
     }
     last_strr = n;  
-    if (zna4 > n->data){
+    if (zna4 > n->data)
+	{
       strrstrr = &n->right;
       n = n->right;
-    } else {
+    } 
+	else 
+	{
       strrstrr = &n->left;
       n = n->left;
     }
@@ -90,40 +107,52 @@ int error = find(t, zna4, en);
   return 0;
 }
 
-int depth(struct strr * n, int deep){
-  if (n == NULL){
+int depth(struct strr * n, int deep)
+{
+  if (n == NULL)
+  {
     return deep;
   }
-    
-  int depth1 = depth(n->left, deep + 1);
+int depth1 = depth(n->left, deep + 1);
 int depth2 = depth(n->right, deep + 1);
   return (depth1 > depth2) ? depth1 : depth2;
 }
 
-void printstrr(struct strr * n, int current, int deep, int first){
-  if (current == deep){
-      if (first > 0){
-        printf(" ");
-      }
-      
-    if (n == NULL){
+void printstrr(struct strr * n, int current, int deep, int first)
+{
+  if (current == deep)
+  {
+    if (first > 0)
+	{
+    printf(" ");
+    }
+    
+    if (n == NULL)
+	{
       printf("_");
-    } else{
+    } 
+	else
+	{
       printf("%d", n->data);
     } 
-  } else if (n != NULL){
+  } 
+  else if (n != NULL)
+  {
     printstrr(n->left, current + 1, deep, first);
 printstrr(n->right, current + 1, deep, first + 1);
-  } else {
+  } 
+  else
+	{
     printstrr(n, current + 1, deep, first);
 printstrr(n, current + 1, deep, first + 1);
-  }
+	}
 }
 
 void print(struct strr * n)
 {
   int m = depth(n, 0);
-  for (int i = 1; i <= m; i++){
+  for (int i = 1; i <= m; i++)
+  {
     printstrr(n, 1, i, 0);
 printf("\n");
   }
@@ -138,10 +167,14 @@ void print_obh1(struct strr * n)
 {
   int m = depth(n, 0);
 int flag_derev = 0;
-  for (int i = 1; i <= m; i++){
-    if (flag_derev > 0){
+  for (int i = 1; i <= m; i++)
+  {
+    if (flag_derev > 0)
+	{
         printf(" ");
-    } else {
+    }
+	else
+	{
         flag_derev++;
     }
     printstrr(n, 1, i, 0);
@@ -155,10 +188,13 @@ int ab = 0;
 strr* write[15];
 int wb = 0;
 strr* n = t->kor;
-    while (wb<t->count){ 
-        while (n != NULL){
+    while (wb<t->count)
+	{ 
+        while (n != NULL)
+		{
             wb++;
-            if (n->right != NULL){
+            if (n->right != NULL)
+			{
                 ab++;
                 a[ab] = n->right;
             }
@@ -170,10 +206,14 @@ strr* n = t->kor;
     }
     
     int flag_derev = 0;
-    for (int i = 1; i <= wb; i++){
-        if (flag_derev > 0){
+    for (int i = 1; i <= wb; i++)
+	{
+        if (flag_derev > 0)
+		{
             printf(" ");
-        } else {
+        } 
+		else
+		{
             flag_derev++;
         }
         printf("%d", write[i]->data);
@@ -183,21 +223,26 @@ strr* n = t->kor;
 
 void print_obh3(struct strr * n, int flag_derev)
 {
-    if (n->left != NULL){
+    if (n->left != NULL)
+	{
         print_obh3(n->left, flag_derev + 1);
     } 
-    if (n->right != NULL){
+    if (n->right != NULL)
+	{
         print_obh3(n->right, flag_derev + 1);
     }
     printf("%d", n->data);
-    if (flag_derev > 0){
+    if (flag_derev > 0)
+	{
         printf(" ");
     }
 }   
-int main(){
+int main()
+{
   struct tree * t = malloc(sizeof t);
   init(t);
-  for (int i = 0; i < 7; i++){
+  for (int i = 0; i < 7; i++)
+  {
     int a;
     scanf("%d", &a);
     insert(t, a);
