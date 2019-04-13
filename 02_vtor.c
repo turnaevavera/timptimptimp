@@ -3,243 +3,201 @@
 #include <stdbool.h>
 #include <string.h>
 
-typedef struct strr
+typedef struct list
 {
-    int data;
-    struct strr * left;
-  struct strr * right;
-  struct strr * rodit;
+  int data;
+  struct list * left;
+  struct list * right;
+  struct list * mamapapa;
+} 
+list;
+
+typedef struct derevo
+{
+  struct list * square;   
+  int count;            
+} 
+derevo;
+
+void init(derevo * t)
+{
+    struct derevo * new_tree = malloc(sizeof new_tree);
+    new_tree->square = NULL;
+    new_tree->count = 0;
+    t = new_tree;
 }
 
-strr;
-typedef struct derev
+int find(derevo* t, int ciferki, list* l)
 {
-    struct strr * kor;   
-  int count;
-}
-
-derev;
-void init(derev* t)
-{
-    struct derev * new_derev = malloc(sizeof new_derev);
-new_derev->kor = NULL;
-    new_derev->count = 0;
-    t = new_derev;
-}
-
-int find(derev* t, int zna4, strr* n)
-{
-  struct strr * strrstrr;
-strrstrr = t->kor;
-  if (t->kor == NULL)
+  struct list * ll;
+  ll = t->square;
+  if (t->square == NULL)
   {
     return 1;
   }
   while (1)
   {
-    if (strrstrr == NULL) 
+    if (ll == NULL) 
 	{
       return 1;
-    } 
-	else if (strrstrr->data == zna4)
+    } else if (ll->data == ciferki)
 	{
-      n->data = strrstrr->data;
-      n->left = strrstrr->left;
-      n->right = strrstrr->right;
-      n->rodit = strrstrr->rodit;
+      l->data = ll->data;
+      l->left = ll->left;
+      l->right = ll->right;
+      l->mamapapa = ll->mamapapa;
       return 0;
-    } 
-	else if (zna4 > strrstrr->data)
+    } else if (ciferki > ll->data)
 	{
-      strrstrr = strrstrr->right;
-    } 
-	else 
+      ll = ll->right;
+    } else 
 	{
-      strrstrr = strrstrr->left;
+      ll = ll->left;
     }
   }
   return 1;
 }
 
-int insert(derev* t, int zna4)
+int insert(derevo* t, int ciferki)
 {
-  struct strr * n, ** strrstrr, * last_strr = NULL;
-struct strr * en;
-en = malloc(sizeof * en);
-int error = find(t, zna4, en);
+  struct list * l, ** ll, * lll = NULL;
+  struct list * yes;
+  yes = malloc(sizeof * yes);
+  int error = find(t, ciferki, yes);
   if (error == 0)
   {
     return 1;
   }
-  strrstrr = &t->kor;
-  n = t->kor;
-  while (1)
-  {
-    if (n == NULL) 
+  ll = &t->square;
+  l = t->square;
+  while (1){
+    if (l == NULL)
 	{
-      n = * strrstrr = malloc(sizeof * n);
-      if (n != NULL)
+      l = *ll = malloc(sizeof * l);
+      if (l != NULL)
 	  {
-        n->data = zna4;
-        n->left = NULL;
-        n->right = NULL;
-        n->rodit = last_strr;
+        l->data = ciferki;
+        l->left = NULL;
+        l->right = NULL;
+        l->mamapapa = lll;
         t->count++;
         return 0;
-      } 
-	  else
-		{
+      }
+	  else 
+	  {
         return 2; 
-		}
+      }
     }
-    last_strr = n;  
-    if (zna4 > n->data)
+    lll = l;  
+    if (ciferki > l->data)
 	{
-      strrstrr = &n->right;
-      n = n->right;
+      ll = &l->right;
+      l = l->right;
     } 
-	else 
+	else
 	{
-      strrstrr = &n->left;
-      n = n->left;
+      ll = &l->left;
+      l = l->left;
     }
   }
   return 0;
 }
 
-int depth(struct strr * n, int deep)
+int glubinadereva(struct list * l, int deep)
 {
-  if (n == NULL)
+  if (l == NULL)
   {
     return deep;
   }
-int depth1 = depth(n->left, deep + 1);
-int depth2 = depth(n->right, deep + 1);
+  int depth1 = glubinadereva(l->left, deep + 1);
+  int depth2 = glubinadereva(l->right, deep + 1);
   return (depth1 > depth2) ? depth1 : depth2;
 }
 
-void printstrr(struct strr * n, int current, int deep, int first)
+void printList(struct list * l, int current, int deep, int first)
 {
   if (current == deep)
   {
-    if (first > 0)
-	{
-    printf(" ");
-    }
-    
-    if (n == NULL)
+      if (first > 0)
+	  {
+        printf(" ");
+      }
+      
+    if (l == NULL)
 	{
       printf("_");
-    } 
-	else
-	{
-      printf("%d", n->data);
+    } else{
+      printf("%d", l->data);
     } 
   } 
-  else if (n != NULL)
+  else if (l != NULL)
   {
-    printstrr(n->left, current + 1, deep, first);
-printstrr(n->right, current + 1, deep, first + 1);
+    printList(l->left, current + 1, deep, first);
+    printList(l->right, current + 1, deep, first + 1);
   } 
-  else
-	{
-    printstrr(n, current + 1, deep, first);
-printstrr(n, current + 1, deep, first + 1);
-	}
+  else 
+  {
+    printList(l, current + 1, deep, first);
+    printList(l, current + 1, deep, first + 1);
+  }
 }
 
-void print(struct strr * n)
+void print(struct list * l)
 {
-  int m = depth(n, 0);
-  for (int i = 1; i <= m; i++)
-  {
-    printstrr(n, 1, i, 0);
-printf("\n");
+  int m = glubinadereva(l, 0);
+  for (int i = 1; i <= m; i++){
+    printList(l, 1, i, 0);
+    printf("\n");
   }
 }   
 
-void printderev(struct derev * t)
+void printTree(struct derevo * t)
 {
-    print(t->kor);
+    print(t->square);
 }
-
-void print_obh1(struct strr * n)
+ 
+void print_round3(struct derevo * t)
 {
-  int m = depth(n, 0);
-int flag_derev = 0;
-  for (int i = 1; i <= m; i++)
-  {
-    if (flag_derev > 0)
-	{
-        printf(" ");
-    }
-	else
-	{
-        flag_derev++;
-    }
-    printstrr(n, 1, i, 0);
-  }
-}   
-
-void print_obh2(struct derev * t)
-{
-    strr* a[15];
-int ab = 0;
-strr* write[15];
-int wb = 0;
-strr* n = t->kor;
-    while (wb<t->count)
+    list * a[15];
+    int var1 = 0;
+    list * write[15];
+    int var2 = 0;
+    list * l = t->square;
+    while (var2 < t->count)
 	{ 
-        while (n != NULL)
+        while (l != NULL)
 		{
-            wb++;
-            if (n->right != NULL)
+            var2++;
+            if (l->right != NULL)
 			{
-                ab++;
-                a[ab] = n->right;
+                var1++;
+                a[var1] = l->right;
             }
-            write[wb] = n;
-            n = n->left; 
+            write[var2] = l;
+            l = l->left; 
         }
-        n = a[ab];
-        ab -= 1;   
+        l = a[var1];
+        var1 -= 1;   
     }
-    
-    int flag_derev = 0;
-    for (int i = 1; i <= wb; i++)
+    int derevoplus = 0;
+    for (int i = 1; i <= var2; i++)
 	{
-        if (flag_derev > 0)
+        if (derevoplus > 0)
 		{
             printf(" ");
         } 
 		else
 		{
-            flag_derev++;
+            derevoplus++;
         }
         printf("%d", write[i]->data);
     }   
   printf("\n");
 }   
 
-void print_obh3(struct strr * n, int flag_derev)
-{
-    if (n->left != NULL)
-	{
-        print_obh3(n->left, flag_derev + 1);
-    } 
-    if (n->right != NULL)
-	{
-        print_obh3(n->right, flag_derev + 1);
-    }
-    printf("%d", n->data);
-    if (flag_derev > 0)
-	{
-        printf(" ");
-    }
-}   
 int main()
 {
-  struct tree * t = malloc(sizeof t);
+  struct derevo * t = malloc(sizeof t);
   init(t);
   for (int i = 0; i < 7; i++)
   {
@@ -247,5 +205,6 @@ int main()
     scanf("%d", &a);
     insert(t, a);
   }
+  print_round3(t);
   return 0;
 }
