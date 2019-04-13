@@ -224,8 +224,7 @@ void printNode(struct node * n, int current, int deep, int first)
     if (n == NULL)
 	{
       printf("_");
-    } e
-	lse
+    } else
 	{
       printf("%d", n->data);
     } 
