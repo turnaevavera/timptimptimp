@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int sorting_function(int *rrr, int *ooo) {//пирамидальная
+int sorting_function(int *rrr, int *ooo) {
 	int tmp = *rrr;
 	*rrr = *ooo;
 	*ooo = tmp;
@@ -18,7 +18,7 @@ int main() {
 		comparison = 0, permutation = 0;
 		int n = 200, step = 0, ooo;
 		int rrr[n];
-		for (int i = 0; i < n; i++) { rrr[i] = rand() % (2 * n) + 1; } // наилучший {a[i]=n + i - 199;} // наихудший {a[i]=n-i;}
+		for (int i = 0; i < n; i++) { rrr[i] = rand() % (2 * n) + 1; } 
 		while (1) {
 			ooo = 0;
 			for (int i = 0; i < n; ++i) {
